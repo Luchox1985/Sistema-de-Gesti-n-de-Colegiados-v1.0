@@ -1,4 +1,4 @@
-# Sistema-de-Gesti-n-de-Colegiados-v1.0
+# Sistema-de-Gestión-de-Colegiados-v1.0
 Automatización del proceso de clasificación y gestión de colegiados del Colegio Profesional (7000+ registros activos).
 ## ¿Qué hace?
 - Clasifica colegiados por estado: ACTIVO, MOROSO, INACTIVO, FALLECIDO
