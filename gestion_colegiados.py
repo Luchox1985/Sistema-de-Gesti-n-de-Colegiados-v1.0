@@ -4,6 +4,7 @@ libro = load_workbook(r"C:\Users\Colegiados\Desktop\Informatica\academia_inf\col
 hoja = libro.active
 colegiados = []
 
+
 for fila in hoja.iter_rows(min_row=2, values_only=True):
     colegiados.append({
         "sede":          fila[0],
@@ -50,6 +51,12 @@ def ver_activos(lista):
     print(f"--------------------------")
     print(f"Total activos: {activos}")
 
+def buscar_rut(lista, rut):
+     print("\n--- BÚSQUEDA POR RUT ---")
+     for c in lista:
+         if c["rut"] == rut:
+             print(f"{c['rut']} | {c['nombre']}| {c['sede']} | {c['genero']} | {c['email']} | {c['estado']} | {c['medio_pago']} | {c['meses_impagos']}")
+
 # El sistema corre en loop hasta que el usuario decida salir con 0
 while opcion != "0":
     print("==================")
@@ -58,6 +65,7 @@ while opcion != "0":
     print("1. Ver colegiados")
     print("2. Ver morosos")
     print("3. Ver activos")
+    print("4. Buscar por RUT")
     print("0. Salir")
     opcion = input("Elige una opción: ")
 
@@ -68,6 +76,9 @@ while opcion != "0":
         ver_morosos(colegiados)
     elif opcion == "3":
         ver_activos(colegiados)
+    elif opcion == "4":
+        rut_buscar = input("Ingresa el RUT: ")
+        buscar_rut(colegiados, rut_buscar)
     elif opcion == "0":
         print("¡Hasta luego!")
     else:
