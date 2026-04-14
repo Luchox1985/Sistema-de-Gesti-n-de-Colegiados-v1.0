@@ -34,7 +34,7 @@ def ver_morosos(lista):
     moroso = 0
     for c in lista:
         if c["estado"] == "MOROSO":
-            print(f"{c['rut']} | {c['nombre']}")
+            print(f"{c['rut']} | {c['nombre']} | {c['meses_impagos']} meses impagos" )
             moroso += 1  # cada moroso encontrado suma 1 al contador
     print(f"--------------------------")
     print(f"Total morosos: {moroso}")
