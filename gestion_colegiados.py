@@ -1,7 +1,7 @@
-# Variable de control — empieza vacía para que el while arranque de inmediato
+# El menú necesita una variable de partida — vacía para que el while arranque de inmediato
 opcion = ""
 
-# Base de datos simulada — en v2.0 esto vendrá directo desde el Excel real
+# Base de datos simulada — en v2.0 esto vendrá directo desde el Excel real con 7000 registros
 colegiados = [
     {"rut": "111-1", "nombre": "Ana García",  "estado": "ACTIVO"},
     {"rut": "222-2", "nombre": "Luis Pérez",  "estado": "MOROSO"},
@@ -10,29 +10,36 @@ colegiados = [
     {"rut": "555-5", "nombre": "Rosa Muñoz",  "estado": "MOROSO"}
 ]
 
-# Muestra todos los colegiados sin filtro — útil para ver el panorama completo
+# Muestra el padrón completo — útil para tener el panorama general antes de filtrar
 def ver_colegiados(lista):
     print("\n--- LISTA DE COLEGIADOS ---")
     for c in lista:
         print(f"{c['rut']} | {c['nombre']} | {c['estado']}")
     print(f"Total: {len(lista)}")
 
-# Filtra solo los morosos — los que requieren gestión de cobranza
+# Filtra solo los que tienen deuda — los que necesitan gestión de cobranza este mes
 def ver_morosos(lista):
     print("\n--- COLEGIADOS MOROSOS ---")
+    moroso = 0
     for c in lista:
         if c["estado"] == "MOROSO":
             print(f"{c['rut']} | {c['nombre']}")
+            moroso += 1  # cada moroso encontrado suma 1 al contador
+    print(f"--------------------------")
+    print(f"Total morosos: {moroso}")
 
-# Filtra solo los activos — los que están al día con sus cuotas
+# Filtra solo los que están al día — los que van en la nómina del seguro
 def ver_activos(lista):
     print("\n--- COLEGIADOS ACTIVOS ---")
+    activos = 0
     for c in lista:
         if c["estado"] == "ACTIVO":
             print(f"{c['rut']} | {c['nombre']}")
+            activos += 1  # cada activo encontrado suma 1 al contador
+    print(f"--------------------------")
+    print(f"Total activos: {activos}")
 
-# El menú corre indefinidamente hasta que el usuario elija 0
-# El while se rompe solo cuando opcion == "0" — sin necesidad de break
+# El sistema corre en loop hasta que el usuario decida salir con 0
 while opcion != "0":
     print("==================")
     print("  MENÚ PRINCIPAL  ")
@@ -43,8 +50,7 @@ while opcion != "0":
     print("0. Salir")
     opcion = input("Elige una opción: ")
 
-    # Cada opción llama su función correspondiente
-    # El menú no tiene lógica propia — solo deriva al lugar correcto
+    # Cada opción deriva a su función — el menú no procesa datos, solo dirige
     if opcion == "1":
         ver_colegiados(colegiados)
     elif opcion == "2":
@@ -54,5 +60,4 @@ while opcion != "0":
     elif opcion == "0":
         print("¡Hasta luego!")
     else:
-        # Si el usuario escribe cualquier otra cosa, le avisamos y volvemos al menú
         print("Opción no válida. Intenta de nuevo.")
