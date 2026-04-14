@@ -1,4 +1,4 @@
-# Sistema de Gestión de Colegiados
+# Sistema de Gestión de Colegiados v 1.1.
 
 Automatización del proceso de clasificación y gestión de colegiados
 del Colegio Profesional (7000+ registros activos).
