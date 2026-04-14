@@ -1,14 +1,25 @@
-# El menú necesita una variable de partida — vacía para que el while arranque de inmediato
-opcion = ""
+from openpyxl import load_workbook
+# Abrimos el Excel y apuntamos a la hoja activa
+libro = load_workbook(r"C:\Users\Colegiados\Desktop\Informatica\academia_inf\colegiados_prueba.xlsx")
+hoja = libro.active
+colegiados = []
 
-# Base de datos simulada — en v2.0 esto vendrá directo desde el Excel real con 7000 registros
-colegiados = [
-    {"rut": "111-1", "nombre": "Ana García",  "estado": "ACTIVO"},
-    {"rut": "222-2", "nombre": "Luis Pérez",  "estado": "MOROSO"},
-    {"rut": "333-3", "nombre": "María López", "estado": "INACTIVO"},
-    {"rut": "444-4", "nombre": "Juan Soto",   "estado": "ACTIVO"},
-    {"rut": "555-5", "nombre": "Rosa Muñoz",  "estado": "MOROSO"}
-]
+for fila in hoja.iter_rows(min_row=2, values_only=True):
+    colegiados.append({
+        "sede":          fila[0],
+        "fecha":         fila[1],
+        "rut":           fila[2],
+        "nombre":        fila[3],
+        "genero":        fila[4],
+        "email":         fila[5],
+        "estado":        fila[6],
+        "medio_pago":    fila[7],
+        "ultimo_pago":   fila[8],
+        "meses_impagos": fila[9]
+    })
+print(f"Total colegiados cargados: {len(colegiados)}")
+
+opcion = ""
 
 # Muestra el padrón completo — útil para tener el panorama general antes de filtrar
 def ver_colegiados(lista):
